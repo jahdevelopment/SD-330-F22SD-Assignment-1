@@ -16,7 +16,7 @@ using (IServiceScope scope = app.Services.CreateScope())
 {
     IServiceProvider services = scope.ServiceProvider;
 
-    await SeedData.Inittialize(services);
+    await SeedData.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.

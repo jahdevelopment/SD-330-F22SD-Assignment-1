@@ -43,7 +43,7 @@ namespace SD_330_F22SD_Assignment_1.Data
                 context.Album.Add(theUnforgettableFire);
                 context.Album.Add(hysteria);
                 context.Album.Add(pyromania);
-                context.Album.Add(adrenalize)
+                context.Album.Add(adrenalize);
             }
 
             Song welcomeToTheJungle = new Song("Welcome To The Jungle", 275, apetiteForDestruction);
@@ -185,7 +185,26 @@ namespace SD_330_F22SD_Assignment_1.Data
             asTwenty.ArtistId = defLeppard.Id;
             asTwenty.SongId = letsGetRocked.Id;
 
-
+            context.ArtistSong.Add(asOne);
+            context.ArtistSong.Add(asTwo);
+            context.ArtistSong.Add(asThree);
+            context.ArtistSong.Add(asFour);
+            context.ArtistSong.Add(asFive);
+            context.ArtistSong.Add(asSix);
+            context.ArtistSong.Add(asSeven);
+            context.ArtistSong.Add(asEight);
+            context.ArtistSong.Add(asNine);
+            context.ArtistSong.Add(asTen);
+            context.ArtistSong.Add(asEleven);
+            context.ArtistSong.Add(asTwelve);
+            context.ArtistSong.Add(asThirteen);
+            context.ArtistSong.Add(asFourteen);
+            context.ArtistSong.Add(asFifteen);
+            context.ArtistSong.Add(asSixteen);
+            context.ArtistSong.Add(asSeventeen);
+            context.ArtistSong.Add(asEighteen);
+            context.ArtistSong.Add(asNineteen);
+            context.ArtistSong.Add(asTwenty);
 
             PlaylistSong psOne = new PlaylistSong();
             psOne.PlaylistId = rockClassics.Id;
@@ -298,6 +317,37 @@ namespace SD_330_F22SD_Assignment_1.Data
             PlaylistSong psTwentyEight = new PlaylistSong();
             psTwentyEight.PlaylistId = eigthiesHits.Id;
             psTwentyEight.SongId = photograph.Id;
+
+            context.PlaylistSong.Add(psOne);
+            context.PlaylistSong.Add(psTwo);
+            context.PlaylistSong.Add(psThree);
+            context.PlaylistSong.Add(psFour);
+            context.PlaylistSong.Add(psFive);
+            context.PlaylistSong.Add(psSix);
+            context.PlaylistSong.Add(psSeven);
+            context.PlaylistSong.Add(psEight);
+            context.PlaylistSong.Add(psNine);
+            context.PlaylistSong.Add(psTen);
+            context.PlaylistSong.Add(psEleven);
+            context.PlaylistSong.Add(psTwelve);
+            context.PlaylistSong.Add(psThirteen);
+            context.PlaylistSong.Add(psFourteen);
+            context.PlaylistSong.Add(psFifteen);
+            context.PlaylistSong.Add(psSixteen);
+            context.PlaylistSong.Add(psSeventeen);
+            context.PlaylistSong.Add(psEighteen);
+            context.PlaylistSong.Add(psNineteen);
+            context.PlaylistSong.Add(psTwenty);
+            context.PlaylistSong.Add(psTwentyOne);
+            context.PlaylistSong.Add(psTwentyTwo);
+            context.PlaylistSong.Add(psTwentyThree);
+            context.PlaylistSong.Add(psTwentyFour);
+            context.PlaylistSong.Add(psTwentyFive);
+            context.PlaylistSong.Add(psTwentySix);
+            context.PlaylistSong.Add(psTwentySeven);
+            context.PlaylistSong.Add(psTwentyEight);
+
+            //context.SaveChanges();
         }
     }
 }

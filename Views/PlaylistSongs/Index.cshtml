@@ -1,11 +1,11 @@
-﻿@model IEnumerable<SD_330_F22SD_Assignment_1.Models.Song>
+﻿@model IEnumerable<SD_330_F22SD_Assignment_1.Models.PlaylistSong>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Songs</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,13 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Playlist)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DurationSeconds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Album)
+                @Html.DisplayNameFor(model => model.Song)
             </th>
             <th></th>
         </tr>
@@ -29,13 +26,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Playlist.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DurationSeconds)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Album.Id)
+                @Html.DisplayFor(modelItem => item.Song.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
