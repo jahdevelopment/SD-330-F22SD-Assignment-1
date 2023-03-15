@@ -22,7 +22,10 @@ namespace SD_330_F22SD_Assignment_1.Controllers
         // GET: Playlists
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Playlist.ToListAsync());
+              return View(await _context.Playlist
+                  .Include(p => p.PlaylistSongs)
+                  .ThenInclude(ps => ps.Song)
+                  .ToListAsync());
         }
 
         // GET: Playlists/Details/5
@@ -34,6 +37,8 @@ namespace SD_330_F22SD_Assignment_1.Controllers
             }
 
             var playlist = await _context.Playlist
+                .Include(p => p.PlaylistSongs)
+                .ThenInclude(ps => ps.Song)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (playlist == null)
             {
