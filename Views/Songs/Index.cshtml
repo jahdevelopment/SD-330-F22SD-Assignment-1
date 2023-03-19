@@ -14,7 +14,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DurationSeconds)
+                Duration
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Album)
@@ -29,7 +29,10 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DurationSeconds)
+                @{
+                    var duration = TimeSpan.FromSeconds(item.DurationSeconds);
+                }
+                @duration.ToString(@"mm\:ss")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Album.Title)

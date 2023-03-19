@@ -11,7 +11,7 @@ using SD_330_F22SD_Assignment_1.Data;
 namespace SD_330_F22SD_Assignment_1.Migrations
 {
     [DbContext(typeof(SpotifyContext))]
-    [Migration("20230313172500_InitialCreate")]
+    [Migration("20230319161117_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,7 +34,8 @@ namespace SD_330_F22SD_Assignment_1.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
@@ -51,7 +52,8 @@ namespace SD_330_F22SD_Assignment_1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -91,7 +93,8 @@ namespace SD_330_F22SD_Assignment_1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -137,7 +140,8 @@ namespace SD_330_F22SD_Assignment_1.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
