@@ -5,78 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Playlist</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-6">
-            playlist @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-6">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-
-<hr />
+<h1>Details Playlist - @Model.Name</h1>
 
 <table class="table">
-<thead>
-    <tr>
-        <th>Song Title</th>
-        <th>Duration in Seconds</th>
-        <th>Album</th>
-    </tr>
-</thead>
-<tbody>
-    @foreach (var playlistSong in Model.PlaylistSongs)
-    {
+    <thead>
         <tr>
-            <td>@playlistSong.Song.Title</td>
-            <td>@playlistSong.Song.DurationSeconds</td>
-            <td>@playlistSong.Song.Album.Title</td>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Duration</th>
+            <th></th>
         </tr>
-    }
-</tbody>
+    </thead>
+    <tbody>
+        @foreach (var playlistSong in Model.PlaylistSongs)
+        {
+            <tr>
+                <td>@playlistSong.Song.Title</td>
+                <td>@playlistSong.Song.Album</td>
+                <td>@playlistSong.Song.DurationSeconds</td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-@*<table class="table">
-    @foreach (PlaylistSong ps in Model.PlaylistSongs)
-    {
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => ps.Song.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => ps.Song.DurationSeconds)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => ps.Song.Album)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.PlaylistSongs)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => ps.Song.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => ps.Song.DurationSeconds)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => ps.Song.Album.Title)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    }
-</table>*@
+<p>Total runtime Playlist: @Model.PlaylistSongs.Sum(ps => ps.Song.DurationSeconds)</p>
+
 
 <div>
     <a asp-action="Index">Back to List</a>

@@ -39,7 +39,8 @@ namespace SD_330_F22SD_Assignment_1.Controllers
             var playlist = await _context.Playlist
                 .Include(p => p.PlaylistSongs)
                 .ThenInclude(ps => ps.Song)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (playlist == null)
             {
                 return NotFound();
