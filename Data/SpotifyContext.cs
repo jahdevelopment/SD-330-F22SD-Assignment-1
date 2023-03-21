@@ -16,8 +16,7 @@ namespace SD_330_F22SD_Assignment_1.Data
 
         private void _createListenersListModel(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ListenersList>()
-                .Property(l => l.ListenerslistsPodcasts);
+            
 
             modelBuilder.Entity<ListenersList>()
                 .Property(l => l.Name)
@@ -54,9 +53,6 @@ namespace SD_330_F22SD_Assignment_1.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Artist>()
-                .Property(a => a.PodcastsArtists);
-
-            modelBuilder.Entity<Artist>()
                 .HasKey(a => a.Id);
 
             modelBuilder.Entity<Artist>()
@@ -74,8 +70,6 @@ namespace SD_330_F22SD_Assignment_1.Data
                 .WithOne(ga => ga.Artist)
                 .HasForeignKey(ga => ga.Id);
 
-            modelBuilder.Entity<Episode>()
-                .Property(e => e.GuestArtists);
 
             modelBuilder.Entity<Episode>()
                 .HasKey(e => e.EpisodeId);

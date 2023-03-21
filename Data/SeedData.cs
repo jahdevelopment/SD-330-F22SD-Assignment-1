@@ -347,6 +347,57 @@ namespace SD_330_F22SD_Assignment_1.Data
             context.PlaylistSong.Add(psTwentySeven);
             context.PlaylistSong.Add(psTwentyEight);
 
+            Podcast podcastOne = new Podcast();
+            podcastOne.Name = "Tech Talk Podcast";
+
+            Podcast podcastTwo = new Podcast();
+            podcastTwo.Name = "True Crime Tales";
+
+            Podcast podcastThree = new Podcast();
+            podcastThree.Name = "The Game Masters";
+
+            Podcast podcastFour = new Podcast();
+            podcastFour.Name = "The Health Nut";
+
+            if (!context.Podcast.Any())
+            {
+                context.Podcast.Add(podcastOne);
+                context.Podcast.Add(podcastTwo);
+                context.Podcast.Add(podcastThree);
+                context.Podcast.Add(podcastFour);
+            }
+
+            Episode episodeOne = new Episode("The Future of AI", 3150, new DateTime(2022, 01, 06), podcastOne);
+            Episode episodeTwo = new Episode("Cybersecurity Concerns", 2295, new DateTime(2022, 01, 13), podcastOne);
+            Episode episodeThree = new Episode("The Rise of Crypto", 3760, new DateTime(2022, 01, 20), podcastOne);
+            Episode episodeFour = new Episode("The Case of Jane Doe", 2955, new DateTime(2022, 09, 15), podcastTwo);
+            Episode episodeFive = new Episode("The Mystery of the Mask", 2814, new DateTime(2022, 09, 22), podcastTwo);
+            Episode episodeSix = new Episode("The Serial Killer Next Door", 2765, new DateTime(2022, 09, 29), podcastTwo);
+            Episode episodeSeven = new Episode("The Creator of Dungeons & Dragons", 2730, new DateTime(2022, 05, 01), podcastThree);
+            Episode episodeEigth = new Episode("How Video Games Changed Society", 2644, new DateTime(2022, 05, 07), podcastThree);
+            Episode episodeNine = new Episode("The Future of Gaming", 2810, new DateTime(2022, 05, 14), podcastThree);
+            Episode episodeTen = new Episode("The Benefits of a Plant-Based Diet", 3456, new DateTime(2022, 01, 06), podcastFour);
+            Episode episodeEleven = new Episode("The Science of Sleep", 3340, new DateTime(2022, 01, 06), podcastFour);
+            Episode episodeTwelve = new Episode("Mental Health", 3590, new DateTime(2022, 01, 06), podcastFour);
+
+            if (!context.Episode.Any())
+            {
+                context.Episode.Add(episodeOne);
+                context.Episode.Add(episodeTwo);
+                context.Episode.Add(episodeThree);
+                context.Episode.Add(episodeFour);
+                context.Episode.Add(episodeFive);
+                context.Episode.Add(episodeSix);
+                context.Episode.Add(episodeSeven);
+                context.Episode.Add(episodeEigth);
+                context.Episode.Add(episodeNine);
+                context.Episode.Add(episodeTen);
+                context.Episode.Add(episodeEleven);
+                context.Episode.Add(episodeTwelve);
+            }
+
+
+
             //context.SaveChanges();
         }
     }
