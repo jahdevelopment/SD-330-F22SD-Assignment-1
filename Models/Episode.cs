@@ -22,7 +22,7 @@ namespace SD_330_F22SD_Assignment_1.Models
 
         public int PodcastId { get; set; }
 
-        public virtual HashSet<GuestArtist> GuestArtists { get; set; } = new HashSet<GuestArtist>();
+        public virtual HashSet<GuestArtist>? GuestArtists { get; set; } = new HashSet<GuestArtist>();
 
         public Episode() { }
 

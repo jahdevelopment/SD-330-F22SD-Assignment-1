@@ -156,9 +156,14 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                     b.Property<int>("ListenersListId")
                         .HasColumnType("int");
 
+                    b.Property<int>("PodcastId")
+                        .HasColumnType("int");
+
                     b.HasKey("ListenersListPodcastId");
 
                     b.HasIndex("ListenersListId");
+
+                    b.HasIndex("PodcastId");
 
                     b.ToTable("ListenersListPodcast");
                 });
@@ -212,17 +217,12 @@ namespace SD_330_F22SD_Assignment_1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PodcastId"));
 
-                    b.Property<int>("ListenersListPodcastId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("PodcastId");
-
-                    b.HasIndex("ListenersListPodcastId");
 
                     b.ToTable("Podcast");
                 });
@@ -328,7 +328,15 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SD_330_F22SD_Assignment_1.Models.Podcast", "Podcast")
+                        .WithMany("ListenerslistsPodcasts")
+                        .HasForeignKey("PodcastId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ListenersList");
+
+                    b.Navigation("Podcast");
                 });
 
             modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.PlaylistSong", b =>
@@ -348,17 +356,6 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                     b.Navigation("Playlist");
 
                     b.Navigation("Song");
-                });
-
-            modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.Podcast", b =>
-                {
-                    b.HasOne("SD_330_F22SD_Assignment_1.Models.ListenersListPodcast", "ListenerslistPodcast")
-                        .WithMany("Podcasts")
-                        .HasForeignKey("ListenersListPodcastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ListenerslistPodcast");
                 });
 
             modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.PodcastArtist", b =>
@@ -415,11 +412,6 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                     b.Navigation("ListenerslistsPodcasts");
                 });
 
-            modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.ListenersListPodcast", b =>
-                {
-                    b.Navigation("Podcasts");
-                });
-
             modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.Playlist", b =>
                 {
                     b.Navigation("PlaylistSongs");
@@ -428,6 +420,8 @@ namespace SD_330_F22SD_Assignment_1.Migrations
             modelBuilder.Entity("SD_330_F22SD_Assignment_1.Models.Podcast", b =>
                 {
                     b.Navigation("Episodes");
+
+                    b.Navigation("ListenerslistsPodcasts");
 
                     b.Navigation("PodcastArtists");
                 });

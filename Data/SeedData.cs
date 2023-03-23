@@ -347,17 +347,10 @@ namespace SD_330_F22SD_Assignment_1.Data
             context.PlaylistSong.Add(psTwentySeven);
             context.PlaylistSong.Add(psTwentyEight);
 
-            Podcast podcastOne = new Podcast();
-            podcastOne.Name = "Tech Talk Podcast";
-
-            Podcast podcastTwo = new Podcast();
-            podcastTwo.Name = "True Crime Tales";
-
-            Podcast podcastThree = new Podcast();
-            podcastThree.Name = "The Game Masters";
-
-            Podcast podcastFour = new Podcast();
-            podcastFour.Name = "The Health Nut";
+            Podcast podcastOne = new Podcast("Tech Talk Podcast");
+            Podcast podcastTwo = new Podcast("True Crime Tales");
+            Podcast podcastThree = new Podcast("The Game Masters");
+            Podcast podcastFour = new Podcast("The Health Nut");
 
             if (!context.Podcast.Any())
             {
@@ -396,7 +389,79 @@ namespace SD_330_F22SD_Assignment_1.Data
                 context.Episode.Add(episodeTwelve);
             }
 
+            ListenersList listenersListOne = new ListenersList("Albert\'s Podcasts");
+            ListenersList listenersListTwo = new ListenersList("Teresa\'s Podcasts");
 
+            if (!context.ListenersList.Any())
+            {
+                context.ListenersList.Add(listenersListOne);
+                context.ListenersList.Add(listenersListTwo);
+            }
+
+            ListenersListPodcast llpOne = new ListenersListPodcast();
+            llpOne.ListenersListId = listenersListOne.ListenersListId;
+            llpOne.PodcastId = podcastOne.PodcastId;
+
+            ListenersListPodcast llpTwo = new ListenersListPodcast();
+            llpTwo.ListenersListId = listenersListOne.ListenersListId;
+            llpTwo.PodcastId = podcastThree.PodcastId;
+
+            ListenersListPodcast llpThree = new ListenersListPodcast();
+            llpThree.ListenersListId = listenersListTwo.ListenersListId;
+            llpThree.PodcastId = podcastTwo.PodcastId;
+
+            ListenersListPodcast llpFour = new ListenersListPodcast();
+            llpFour.ListenersListId = listenersListTwo.ListenersListId;
+            llpFour.PodcastId = podcastFour.PodcastId;
+
+            Artist jane = new Artist("Jane Doe");
+            Artist john = new Artist("John Smith");
+            Artist sara = new Artist("Sara Lee");
+            Artist michael = new Artist("Michael Johnson");
+            Artist peter = new Artist("Peter Jockovic");
+            Artist jennifer = new Artist("Jennifer Scott");
+
+            if (!context.Artist.Any())
+            {
+                context.Artist.Add(jane);
+                context.Artist.Add(john);
+                context.Artist.Add(sara);
+                context.Artist.Add(michael);
+                context.Artist.Add(peter);
+                context.Artist.Add(jennifer);
+            }
+
+            PodcastArtist paOne = new PodcastArtist();
+            paOne.PodcastId = podcastOne.PodcastId;
+            paOne.ArtistId = john.Id;
+
+            PodcastArtist paTwo = new PodcastArtist();
+            paTwo.PodcastId = podcastTwo.PodcastId;
+            paTwo.ArtistId = jane.Id;
+
+            PodcastArtist paThree = new PodcastArtist();
+            paThree.PodcastId = podcastThree.PodcastId;
+            paThree.ArtistId = michael.Id;
+
+            PodcastArtist paFour = new PodcastArtist();
+            paFour.PodcastId = podcastFour.PodcastId;
+            paFour.ArtistId = sara.Id;
+
+            if (!context.PodcastArtist.Any())
+            {
+                context.PodcastArtist.Add(paOne);
+                context.PodcastArtist.Add(paTwo);
+                context.PodcastArtist.Add(paThree);
+                context.PodcastArtist.Add(paFour);
+            }
+
+            GuestArtist gaOne = new GuestArtist();
+            gaOne.Id = peter.Id;
+            gaOne.EpisodeId = episodeSeven.EpisodeId;
+
+            GuestArtist gaTwo = new GuestArtist();
+            gaTwo.Id = jennifer.Id;
+            gaTwo.EpisodeId = episodeEleven.EpisodeId;
 
             //context.SaveChanges();
         }

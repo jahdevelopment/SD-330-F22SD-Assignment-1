@@ -8,14 +8,18 @@
 
         public int ListenersListId { get; set; }
 
-        public virtual HashSet<Podcast> Podcasts { get; set; }  = new HashSet<Podcast>();
+        public Podcast Podcast { get; set; }
+
+        public int PodcastId { get; set; }
 
         public ListenersListPodcast() { }
 
-        public ListenersListPodcast(ListenersList listenersList) 
+        public ListenersListPodcast(ListenersList listenersList, Podcast podcast) 
         {
             ListenersList = listenersList;
             ListenersListId = listenersList.ListenersListId;
+            Podcast = podcast;
+            PodcastId = podcast.PodcastId;
         }
     }
 }

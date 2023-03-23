@@ -22,8 +22,9 @@ namespace SD_330_F22SD_Assignment_1.Controllers
         // GET: Podcasts
         public async Task<IActionResult> Index()
         {
-            var spotifyContext = _context.Podcast.Include(p => p.ListenerslistPodcast);
-            return View(await spotifyContext.ToListAsync());
+              return _context.Podcast != null ? 
+                          View(await _context.Podcast.ToListAsync()) :
+                          Problem("Entity set 'SpotifyContext.Podcast'  is null.");
         }
 
         // GET: Podcasts/Details/5
@@ -35,7 +36,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
             }
 
             var podcast = await _context.Podcast
-                .Include(p => p.ListenerslistPodcast)
                 .FirstOrDefaultAsync(m => m.PodcastId == id);
             if (podcast == null)
             {
@@ -48,7 +48,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
         // GET: Podcasts/Create
         public IActionResult Create()
         {
-            ViewData["ListenersListPodcastId"] = new SelectList(_context.ListenersListPodcast, "ListenersListPodcastId", "ListenersListPodcastId");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace SD_330_F22SD_Assignment_1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PodcastId,Name,ListenersListPodcastId")] Podcast podcast)
+        public async Task<IActionResult> Create([Bind("PodcastId,Name")] Podcast podcast)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListenersListPodcastId"] = new SelectList(_context.ListenersListPodcast, "ListenersListPodcastId", "ListenersListPodcastId", podcast.ListenersListPodcastId);
             return View(podcast);
         }
 
@@ -82,7 +80,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
             {
                 return NotFound();
             }
-            ViewData["ListenersListPodcastId"] = new SelectList(_context.ListenersListPodcast, "ListenersListPodcastId", "ListenersListPodcastId", podcast.ListenersListPodcastId);
             return View(podcast);
         }
 
@@ -91,7 +88,7 @@ namespace SD_330_F22SD_Assignment_1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PodcastId,Name,ListenersListPodcastId")] Podcast podcast)
+        public async Task<IActionResult> Edit(int id, [Bind("PodcastId,Name")] Podcast podcast)
         {
             if (id != podcast.PodcastId)
             {
@@ -118,7 +115,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListenersListPodcastId"] = new SelectList(_context.ListenersListPodcast, "ListenersListPodcastId", "ListenersListPodcastId", podcast.ListenersListPodcastId);
             return View(podcast);
         }
 
@@ -131,7 +127,6 @@ namespace SD_330_F22SD_Assignment_1.Controllers
             }
 
             var podcast = await _context.Podcast
-                .Include(p => p.ListenerslistPodcast)
                 .FirstOrDefaultAsync(m => m.PodcastId == id);
             if (podcast == null)
             {

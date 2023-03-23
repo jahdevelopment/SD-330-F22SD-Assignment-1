@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SD_330_F22SD_Assignment_1.Migrations
 {
     /// <inheritdoc />
-    public partial class PodcastSectionCreation : Migration
+    public partial class IncludingPodcastsSection : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,42 +44,16 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ListenersListPodcast",
-                columns: table => new
-                {
-                    ListenersListPodcastId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ListenersListId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ListenersListPodcast", x => x.ListenersListPodcastId);
-                    table.ForeignKey(
-                        name: "FK_ListenersListPodcast_ListenersList_ListenersListId",
-                        column: x => x.ListenersListId,
-                        principalTable: "ListenersList",
-                        principalColumn: "ListenersListId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Podcast",
                 columns: table => new
                 {
                     PodcastId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ListenersListPodcastId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Podcast", x => x.PodcastId);
-                    table.ForeignKey(
-                        name: "FK_Podcast_ListenersListPodcast_ListenersListPodcastId",
-                        column: x => x.ListenersListPodcastId,
-                        principalTable: "ListenersListPodcast",
-                        principalColumn: "ListenersListPodcastId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,6 +72,32 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                     table.PrimaryKey("PK_Episode", x => x.EpisodeId);
                     table.ForeignKey(
                         name: "FK_Episode_Podcast_PodcastId",
+                        column: x => x.PodcastId,
+                        principalTable: "Podcast",
+                        principalColumn: "PodcastId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ListenersListPodcast",
+                columns: table => new
+                {
+                    ListenersListPodcastId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ListenersListId = table.Column<int>(type: "int", nullable: false),
+                    PodcastId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ListenersListPodcast", x => x.ListenersListPodcastId);
+                    table.ForeignKey(
+                        name: "FK_ListenersListPodcast_ListenersList_ListenersListId",
+                        column: x => x.ListenersListId,
+                        principalTable: "ListenersList",
+                        principalColumn: "ListenersListId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ListenersListPodcast_Podcast_PodcastId",
                         column: x => x.PodcastId,
                         principalTable: "Podcast",
                         principalColumn: "PodcastId",
@@ -170,9 +170,9 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                 column: "ListenersListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Podcast_ListenersListPodcastId",
-                table: "Podcast",
-                column: "ListenersListPodcastId");
+                name: "IX_ListenersListPodcast_PodcastId",
+                table: "ListenersListPodcast",
+                column: "PodcastId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PodcastArtist_PodcastId",
@@ -187,19 +187,19 @@ namespace SD_330_F22SD_Assignment_1.Migrations
                 name: "GuestArtist");
 
             migrationBuilder.DropTable(
+                name: "ListenersListPodcast");
+
+            migrationBuilder.DropTable(
                 name: "PodcastArtist");
 
             migrationBuilder.DropTable(
                 name: "Episode");
 
             migrationBuilder.DropTable(
-                name: "Podcast");
-
-            migrationBuilder.DropTable(
-                name: "ListenersListPodcast");
-
-            migrationBuilder.DropTable(
                 name: "ListenersList");
+
+            migrationBuilder.DropTable(
+                name: "Podcast");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
