@@ -1,0 +1,36 @@
+﻿@model SD_330_F22SD_Assignment_1.Models.Playlist
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details Playlist - @Model.Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Duration</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var playlistSong in Model.PlaylistSongs)
+        {
+            <tr>
+                <td>@playlistSong.Song.Title</td>
+                <td>@playlistSong.Song.Album</td>
+                <td>@playlistSong.Song.DurationSeconds</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Total runtime Playlist: @Model.PlaylistSongs.Sum(ps => ps.Song.DurationSeconds)</p>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
